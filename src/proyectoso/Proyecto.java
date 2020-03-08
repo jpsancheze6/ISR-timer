@@ -1,22 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectoso;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import javax.swing.DefaultListModel;
+import javax.swing.Timer;
 
 /**
  *
  * @author Oslo
- * //EN HORA DEL SISTEMA HAY LABELS PARA USAR PARA EL TIEMPO: Minutos, Segundos, Mili
  */
 public class Proyecto extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Proyecto
-     */
+    public ArrayList<proceso> procesos = new ArrayList<>();
+    public int contadorProcesos = 0;
+
     public Proyecto() {
         initComponents();
+        currentTime.start();
+        reduceTimeProcess.start();
     }
 
     /**
@@ -35,18 +44,13 @@ public class Proyecto extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         Proceso = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        Segundos = new javax.swing.JLabel();
-        Mili = new javax.swing.JLabel();
-        Minutos = new javax.swing.JLabel();
+        lblCurrentTime = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         iniciar = new javax.swing.JButton();
         iniciar1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaProcesos = new javax.swing.JList<>();
+        lstCalendarizador = new javax.swing.JList<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         turnoProceso = new javax.swing.JTextField();
@@ -64,21 +68,22 @@ public class Proyecto extends javax.swing.JFrame {
 
         jLabel3.setText("Contador del Programa");
 
-        jLabel4.setText("Segundos");
-
-        jLabel5.setText("Milisegundos");
+        lblCurrentTime.setFont(new java.awt.Font("Noto Sans", 0, 48)); // NOI18N
 
         jLabel6.setText("Hora del Sistema");
-
-        jLabel7.setText("Minutos");
 
         jLabel8.setText("Calendarizador");
 
         iniciar.setText("Iniciar");
+        iniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iniciarActionPerformed(evt);
+            }
+        });
 
         iniciar1.setText("Interrupciones");
 
-        jScrollPane1.setViewportView(listaProcesos);
+        jScrollPane1.setViewportView(lstCalendarizador);
 
         jLabel9.setText("Procesos:");
 
@@ -104,71 +109,64 @@ public class Proyecto extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(DireccionMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel8))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jLabel10))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addComponent(iniciar1)))
-                .addGap(57, 57, 57)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jLabel7))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(200, 200, 200)
                 .addComponent(turnoProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel2))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(430, 430, 430)
-                .addComponent(Minutos, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addComponent(iniciar))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(570, 570, 570)
-                .addComponent(jLabel5))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(Proceso, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(490, 490, 490)
-                .addComponent(Segundos, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(470, 470, 470)
                 .addComponent(jLabel11))
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(jLabel9))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(570, 570, 570)
-                .addComponent(Mili, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(490, 490, 490)
-                .addComponent(jLabel4))
             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(158, 158, 158)
+                                .addComponent(DireccionMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(120, 120, 120)
+                                .addComponent(jLabel8))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(53, 53, 53)
+                                        .addComponent(jLabel10))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(43, 43, 43)
+                                        .addComponent(iniciar))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(13, 13, 13)
+                                        .addComponent(iniciar1)))))
+                        .addGap(57, 57, 57)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(Proceso, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel1)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblCurrentTime, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(120, 120, 120)
+                                .addComponent(jLabel6))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,20 +179,9 @@ public class Proyecto extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addGap(44, 44, 44)
                 .addComponent(jLabel10)
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(iniciar1))))
+                .addGap(104, 104, 104)
+                .addComponent(iniciar1))
             .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel6)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel7)
-                .addGap(184, 184, 184)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(320, 320, 320)
                 .addComponent(turnoProceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,42 +189,55 @@ public class Proyecto extends javax.swing.JFrame {
                 .addGap(120, 120, 120)
                 .addComponent(jLabel2))
             .addGroup(layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(Minutos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(370, 370, 370)
                 .addComponent(iniciar))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jLabel5))
             .addGroup(layout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addComponent(Proceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(Segundos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(230, 230, 230)
-                .addComponent(jLabel11))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(290, 290, 290)
-                .addComponent(jLabel9))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(78, 78, 78)
                 .addComponent(jLabel1))
             .addGroup(layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(Mili, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jLabel4))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jLabel6)
+                .addGap(35, 35, 35)
+                .addComponent(lblCurrentTime, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(jLabel11))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(142, 142, 142)
+                                .addComponent(jLabel9))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarActionPerformed
+        //Crear el proceso
+        this.contadorProcesos++;
+        proceso process = new proceso();
+        process.setNombre("Proceso " + contadorProcesos);
+        process.setTiempo(new Random().nextInt(500));
+        process.setEstado("Listo");
+
+        procesos.add(process);
+        /*
+                Agrega los elementos de procesos a la lista
+         */
+        actualizarLista();
+    }//GEN-LAST:event_iniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,12 +274,60 @@ public class Proyecto extends javax.swing.JFrame {
         });
     }
 
+    //Hilo (Timer) para ir colocando la hora actual, a razón de 1 segundo
+    Timer currentTime = new Timer(1000, new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            DateFormat df = new SimpleDateFormat("HH:mm:ss");
+            Date fecha = new Date();
+            lblCurrentTime.setText(df.format(fecha));
+        }
+    });
+
+    public void actualizarLista() {
+        DefaultListModel modeloLista = new DefaultListModel();
+        for (int x = 0; x < procesos.size(); x++) {
+            modeloLista.addElement(procesos.get(x).getNombre() + "," + procesos.get(x).getTiempo() + "," + procesos.get(x).getEstado());
+        }
+        lstCalendarizador.setModel(modeloLista);
+    }
+    
+    public void setearEstados(){
+        for (int x = 0; x < procesos.size(); x++) {
+            procesos.get(x).setEstado("Listo");
+        }
+    }
+
+    //Hilo para ir ejecutando los procesos
+    //Disminuye los tiempos y va reduciendo su tiempo
+    public int x = 0;
+    Timer reduceTimeProcess = new Timer(500, new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            setearEstados();
+            actualizarLista();
+            //Reducir el tiempo del proceso en un segundo
+            if (x >= procesos.size()) {
+                x = 0;
+            } else {
+                procesos.get(x).setEstado("En ejecución");
+                int tiempoActual = procesos.get(x).getTiempo();
+                procesos.get(x).setTiempo(tiempoActual - 1);
+                actualizarLista();
+                /*
+                Agrega los elementos de procesos a la lista
+                 */
+                if (procesos.get(x).getTiempo() <= 0) {
+                    procesos.remove(x);
+                    actualizarLista();
+                }
+                x++;
+            }
+        }
+    });
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField DireccionMemoria;
-    private javax.swing.JLabel Mili;
-    private javax.swing.JLabel Minutos;
     private javax.swing.JTextField Proceso;
-    private javax.swing.JLabel Segundos;
     private javax.swing.JButton iniciar;
     private javax.swing.JButton iniciar1;
     private javax.swing.JLabel jLabel1;
@@ -287,10 +335,7 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
@@ -298,7 +343,8 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JList<String> listaProcesos;
+    private javax.swing.JLabel lblCurrentTime;
+    private javax.swing.JList<String> lstCalendarizador;
     private javax.swing.JTextField turnoProceso;
     // End of variables declaration//GEN-END:variables
 }
