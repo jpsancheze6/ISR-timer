@@ -6,12 +6,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.swing.DefaultListModel;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -56,7 +58,7 @@ public class Proyecto extends javax.swing.JFrame {
         turnoProceso = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        ControlTiempo = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,7 +93,7 @@ public class Proyecto extends javax.swing.JFrame {
 
         jLabel11.setText("Control de Tiempo");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        ControlTiempo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -102,7 +104,7 @@ public class Proyecto extends javax.swing.JFrame {
                 "Proceso", "Inicio", "Tiempo Total", "Tiempo Restante"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(ControlTiempo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -229,14 +231,17 @@ public class Proyecto extends javax.swing.JFrame {
         this.contadorProcesos++;
         proceso process = new proceso();
         process.setNombre("Proceso " + contadorProcesos);
+        process.setHora(lblCurrentTime.getText());
         process.setTiempo(new Random().nextInt(500));
         process.setEstado("Listo");
+        
 
         procesos.add(process);
         /*
                 Agrega los elementos de procesos a la lista
          */
         actualizarLista();
+        tablaProcesos();
     }//GEN-LAST:event_iniciarActionPerformed
 
     /**
@@ -290,7 +295,23 @@ public class Proyecto extends javax.swing.JFrame {
         }
         lstCalendarizador.setModel(modeloLista);
     }
-    
+    // Tabla para mostrar el proceso, cuando inicio, el tiempo total y cuanto resta
+    public void tablaProcesos(){
+        DefaultTableModel modelo = new DefaultTableModel();
+        ControlTiempo.setModel(modelo);
+         modelo.addColumn("Proceso");
+        modelo.addColumn("Inicio");
+        modelo.addColumn("Tiempo Total");
+        modelo.addColumn("Tiempo Restante");
+         Object []object = new Object[4];
+        for (int x = 0; x < procesos.size(); x++) {
+            object[0] = procesos.get(x).getNombre();
+            object[1] = procesos.get(x).getHora();
+            object[2] = procesos.get(x).getTiempo();
+            modelo.addRow(object);
+        }
+        
+    }
     public void setearEstados(){
         for (int x = 0; x < procesos.size(); x++) {
             procesos.get(x).setEstado("Listo");
@@ -326,6 +347,7 @@ public class Proyecto extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable ControlTiempo;
     private javax.swing.JTextField DireccionMemoria;
     private javax.swing.JTextField Proceso;
     private javax.swing.JButton iniciar;
@@ -342,7 +364,6 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCurrentTime;
     private javax.swing.JList<String> lstCalendarizador;
     private javax.swing.JTextField turnoProceso;
