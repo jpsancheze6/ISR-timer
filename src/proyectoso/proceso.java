@@ -4,6 +4,7 @@ public class proceso {
     private String nombre;
     private int tiempo;
     private String estado;
+    private String hora;
 
     public String getEstado() {
         return estado;
@@ -28,7 +29,13 @@ public class proceso {
     public void setTiempo(int tiempo) {
         this.tiempo = tiempo;
     }
-    
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
     
     
 }
