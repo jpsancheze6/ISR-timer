@@ -1,17 +1,12 @@
 package proyectoso;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import javax.swing.DefaultListModel;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -130,36 +125,40 @@ public class Proyecto extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(158, 158, 158)
-                                .addComponent(DireccionMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(120, 120, 120)
-                                .addComponent(jLabel8))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(60, 60, 60)
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jLabel9))
                                     .addGroup(layout.createSequentialGroup()
                                         .addContainerGap()
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(36, 36, 36)
-                                        .addComponent(turnoProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(iniciar1)
+                                                .addGap(4, 4, 4))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(turnoProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(iniciar))
+                                                .addGap(30, 30, 30))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addGap(41, 41, 41))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(40, 40, 40)
-                                        .addComponent(jLabel10))
+                                        .addGap(80, 80, 80)
+                                        .addComponent(jLabel3))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(30, 30, 30)
-                                        .addComponent(iniciar))
-                                    .addComponent(iniciar1))))
-                        .addGap(18, 18, 18)
+                                        .addGap(158, 158, 158)
+                                        .addComponent(DireccionMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(120, 120, 120)
+                                        .addComponent(jLabel8)))
+                                .addGap(18, 18, Short.MAX_VALUE)))
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -206,17 +205,13 @@ public class Proyecto extends javax.swing.JFrame {
                             .addGap(72, 72, 72)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel10)
-                                    .addGap(104, 104, 104)
-                                    .addComponent(iniciar1))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(30, 30, 30)
-                                    .addComponent(turnoProceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(80, 80, 80)
-                                    .addComponent(iniciar))))
+                            .addComponent(jLabel10)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(turnoProceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(26, 26, 26)
+                            .addComponent(iniciar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(iniciar1))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(142, 142, 142)
                             .addComponent(jLabel9)
@@ -236,10 +231,9 @@ public class Proyecto extends javax.swing.JFrame {
         proceso process = new proceso();
         process.setNombre("Proceso " + contadorProcesos);
         process.setHora(lblCurrentTime.getText());
-        process.setTiempo(new Random().nextInt(500));
+        process.setTiempo(getRandomNumberInRange(1, 5));
         tiempoInicio.add(String.valueOf(process.getTiempo()));
         process.setEstado("Listo");
-        
 
         procesos.add(process);
         /*
@@ -300,8 +294,9 @@ public class Proyecto extends javax.swing.JFrame {
         }
         lstCalendarizador.setModel(modeloLista);
     }
+
     // Tabla para mostrar el proceso, cuando inicio, el tiempo total y cuanto resta
-    public void tablaProcesos(ArrayList<String> tiempoInicio){
+    public void tablaProcesos(ArrayList<String> tiempoInicio) {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Proceso");
         modelo.addColumn("Inicio");
@@ -309,7 +304,7 @@ public class Proyecto extends javax.swing.JFrame {
         modelo.addColumn("Tiempo Restante");
         modelo.addColumn("Fin");
         ControlTiempo.setModel(modelo);
-        Object []object = new Object[5];
+        Object[] object = new Object[5];
         for (int x = 0; x < procesos.size(); x++) {
             object[0] = procesos.get(x).getNombre();
             object[1] = procesos.get(x).getHora();
@@ -318,9 +313,10 @@ public class Proyecto extends javax.swing.JFrame {
             object[4] = "-";
             modelo.addRow(object);
         }
-        
+
     }
-    public void setearEstados(){
+
+    public void setearEstados() {
         for (int x = 0; x < procesos.size(); x++) {
             procesos.get(x).setEstado("Listo");
         }
@@ -345,8 +341,9 @@ public class Proyecto extends javax.swing.JFrame {
                 /*
                 Agrega los elementos de procesos a la lista
                  */
-                if (procesos.get(x).getTiempo() == 0) {
+                if (procesos.get(x).getTiempo() <= 0) {
                     procesos.get(x).setEstado("Finalizado");
+                    procesos.remove(x);
                     ControlTiempo.setValueAt(lblCurrentTime.getText(), x, 4);
                     actualizarLista();
                 }
@@ -354,7 +351,16 @@ public class Proyecto extends javax.swing.JFrame {
             }
         }
     });
-    
+
+    private static int getRandomNumberInRange(int min, int max) {
+        if (min >= max) {
+            throw new IllegalArgumentException("max must be greater than min");
+        }
+
+        Random r = new Random();
+        return r.nextInt((max - min) + 1) + min;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable ControlTiempo;
