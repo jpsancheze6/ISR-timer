@@ -44,92 +44,53 @@ public class Proyecto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        CP = new javax.swing.JPanel();
-        DireccionMemoria = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        DireccionMemoria = new javax.swing.JTextField();
+        txtDireccionMemoria = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        Proceso = new javax.swing.JTextField();
+        txtProcesoPC = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         lblCurrentTime = new javax.swing.JLabel();
-        CAL = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         iniciar = new javax.swing.JButton();
         iniciar1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstCalendarizador = new javax.swing.JList<>();
+        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         turnoProceso = new javax.swing.JTextField();
-        CT = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ControlTiempo = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 770, 10));
 
-        CP.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contador de programa", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(0, 0, 255))); // NOI18N
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 10, 550));
 
         jLabel1.setText("Dirección de Memoria:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
-        getContentPane().add(DireccionMemoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 104, -1));
+        getContentPane().add(txtDireccionMemoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 104, -1));
 
         jLabel2.setText("Proceso:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
-        getContentPane().add(Proceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 104, -1));
+        getContentPane().add(txtProcesoPC, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 104, -1));
 
-        javax.swing.GroupLayout CPLayout = new javax.swing.GroupLayout(CP);
-        CP.setLayout(CPLayout);
-        CPLayout.setHorizontalGroup(
-            CPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CPLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(CPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CPLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(23, 23, 23)
-                        .addComponent(DireccionMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(CPLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(99, 99, 99)
-                        .addComponent(Proceso, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        CPLayout.setVerticalGroup(
-            CPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CPLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(CPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(DireccionMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(CPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CPLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel2))
-                    .addComponent(Proceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        HS.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hora del sistema", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(204, 0, 0))); // NOI18N
+        jLabel3.setText("Contador del Programa");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, -1));
 
         lblCurrentTime.setFont(new java.awt.Font("Noto Sans", 0, 48)); // NOI18N
+        getContentPane().add(lblCurrentTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 282, 66));
 
-        javax.swing.GroupLayout HSLayout = new javax.swing.GroupLayout(HS);
-        HS.setLayout(HSLayout);
-        HSLayout.setHorizontalGroup(
-            HSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HSLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblCurrentTime, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
-        );
-        HSLayout.setVerticalGroup(
-            HSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HSLayout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
-                .addComponent(lblCurrentTime, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
-        );
+        jLabel6.setText("Hora del Sistema");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, -1, -1));
 
-        CAL.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Calendarizador", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(204, 0, 204))); // NOI18N
+        jLabel8.setText("Calendarizador");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
 
         iniciar.setText("Nuevo");
         iniciar.addActionListener(new java.awt.event.ActionListener() {
@@ -137,59 +98,30 @@ public class Proyecto extends javax.swing.JFrame {
                 iniciarActionPerformed(evt);
             }
         });
+        getContentPane().add(iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 470, -1, -1));
 
         iniciar1.setText("Interrupciones");
+        iniciar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iniciar1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(iniciar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 510, -1, -1));
 
-        lstCalendarizador.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Procesos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
         lstCalendarizador.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(lstCalendarizador);
 
-        jLabel10.setText("Turno");
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 284, -1));
 
-        javax.swing.GroupLayout CALLayout = new javax.swing.GroupLayout(CAL);
-        CAL.setLayout(CALLayout);
-        CALLayout.setHorizontalGroup(
-            CALLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CALLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(CALLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CALLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel10))
-                    .addComponent(turnoProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(CALLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(iniciar1)
-                    .addGroup(CALLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(iniciar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(CALLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-        );
-        CALLayout.setVerticalGroup(
-            CALLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CALLayout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(CALLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CALLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel10)
-                        .addGap(4, 4, 4)
-                        .addComponent(turnoProceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(CALLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(iniciar1))
-                    .addComponent(iniciar)))
-        );
+        jLabel9.setText("Procesos:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, -1, -1));
 
-        CT.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Control de tiempo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(0, 153, 0))); // NOI18N
-        CT.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel10.setText("Turno:");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, -1, -1));
+        getContentPane().add(turnoProceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 146, -1));
+
+        jLabel11.setText("Control de Tiempo");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 250, -1, -1));
 
         ControlTiempo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -202,33 +134,7 @@ public class Proyecto extends javax.swing.JFrame {
         ControlTiempo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(ControlTiempo);
 
-        CT.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 320, 270));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(CP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CAL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(HS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CT, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(HS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(CAL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CT, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)))
-        );
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, 370, 246));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -248,6 +154,24 @@ public class Proyecto extends javax.swing.JFrame {
         tablaProcesos(String.valueOf(process.getTiempo()));
         actualizarLista();
     }//GEN-LAST:event_iniciarActionPerformed
+
+    private void iniciar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciar1ActionPerformed
+
+        //Generar interrupción
+        //reduceTimeProcess
+        try {
+            procesos.get(x).setEstado("Bloqueado");
+            actualizarLista();
+            reduceTimeProcess.stop();
+            
+            generarInterrupcion();
+            
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (AWTException ex) {
+            Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_iniciar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,6 +217,17 @@ public class Proyecto extends javax.swing.JFrame {
         }
     });
 
+    public void generarInterrupcion() throws InterruptedException, AWTException{
+        int numeroAleatorio = getRandomNumberInRange(100, 1000);
+        String cadena = "Se activó la interrupción por " + numeroAleatorio + " ms.";
+        Thread.sleep(numeroAleatorio*10);
+        
+        reduceTimeProcess.start();
+        procesos.get(x).setEstado("Listo");
+        actualizarLista();
+        JOptionPane.showMessageDialog(null, cadena);
+    }
+    
     public void actualizarLista() {
         DefaultListModel modeloLista = new DefaultListModel();
         for (int x = 0; x < procesos.size(); x++) {
@@ -329,12 +264,17 @@ public class Proyecto extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             setearEstados();
             actualizarLista();
+            int tamaño = ControlTiempo.getRowCount();
             //Reducir el tiempo del proceso en un segundo
             if (x >= procesos.size()) {
                 x = 0;
             } else {
                 //Colcoar valores
                 turnoProceso.setText(procesos.get(x).getNombre());
+                txtProcesoPC.setText(procesos.get(x).getNombre());
+                //txtDireccionMemoria.setText(Integer.toHexString(System.identityHashCode(procesos.get(x))));
+                txtDireccionMemoria.setText(Integer.toHexString(procesos.get(x).hashCode()));
+
                 procesos.get(x).setEstado("En ejecución");
                 int tiempoActual = procesos.get(x).getTiempo();
                 procesos.get(x).setTiempo(tiempoActual - 1);
@@ -380,19 +320,21 @@ public class Proyecto extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel CAL;
-    private javax.swing.JPanel CP;
-    private javax.swing.JPanel CT;
     private javax.swing.JTable ControlTiempo;
-    private javax.swing.JTextField DireccionMemoria;
-    private javax.swing.JTextField Proceso;
     private javax.swing.JButton iniciar;
     private javax.swing.JButton iniciar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblCurrentTime;
     private javax.swing.JList<String> lstCalendarizador;
     private javax.swing.JTextField turnoProceso;
