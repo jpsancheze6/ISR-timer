@@ -47,9 +47,10 @@ public class Proyecto extends javax.swing.JFrame {
         CP = new javax.swing.JPanel();
         DireccionMemoria = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        DireccionMemoria = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         Proceso = new javax.swing.JTextField();
-        HS = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         lblCurrentTime = new javax.swing.JLabel();
         CAL = new javax.swing.JPanel();
         iniciar = new javax.swing.JButton();
@@ -67,8 +68,12 @@ public class Proyecto extends javax.swing.JFrame {
         CP.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contador de programa", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(0, 0, 255))); // NOI18N
 
         jLabel1.setText("Dirección de Memoria:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
+        getContentPane().add(DireccionMemoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 104, -1));
 
         jLabel2.setText("Proceso:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
+        getContentPane().add(Proceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 104, -1));
 
         javax.swing.GroupLayout CPLayout = new javax.swing.GroupLayout(CP);
         CP.setLayout(CPLayout);
@@ -134,6 +139,7 @@ public class Proyecto extends javax.swing.JFrame {
         });
 
         iniciar1.setText("Interrupciones");
+        getContentPane().add(iniciar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 510, -1, -1));
 
         lstCalendarizador.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Procesos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
         lstCalendarizador.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -243,23 +249,6 @@ public class Proyecto extends javax.swing.JFrame {
         actualizarLista();
     }//GEN-LAST:event_iniciarActionPerformed
 
-    private void iniciar1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-
-        //Generar interrupción
-        //reduceTimeProcess
-        try {
-            procesos.get(x).setEstado("Bloqueado");
-            actualizarLista();
-            reduceTimeProcess.stop();
-            
-            generarInterrupcion();
-            
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (AWTException ex) {
-            Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }  
     /**
      * @param args the command line arguments
      */
@@ -304,17 +293,6 @@ public class Proyecto extends javax.swing.JFrame {
         }
     });
 
-    public void generarInterrupcion() throws InterruptedException, AWTException{
-        int numeroAleatorio = getRandomNumberInRange(100, 1000);
-        String cadena = "Se activó la interrupción por " + numeroAleatorio + " ms.";
-        Thread.sleep(numeroAleatorio*10);
-        
-        reduceTimeProcess.start();
-        procesos.get(x).setEstado("Listo");
-        actualizarLista();
-        JOptionPane.showMessageDialog(null, cadena);
-    }
-
     public void actualizarLista() {
         DefaultListModel modeloLista = new DefaultListModel();
         for (int x = 0; x < procesos.size(); x++) {
@@ -325,7 +303,7 @@ public class Proyecto extends javax.swing.JFrame {
 
     // Tabla para mostrar el proceso, cuando inicio, el tiempo total, cuanto resta y cuando termina
     public void tablaProcesos(String tiempoInicio) {
-        Object[] object = new Object[5];     
+        Object[] object = new Object[5];
         for (int x = 0; x < procesos.size(); x++) {
             object[0] = procesos.get(x).getNombre();
             object[1] = procesos.get(x).getHora();
@@ -357,9 +335,6 @@ public class Proyecto extends javax.swing.JFrame {
             } else {
                 //Colcoar valores
                 turnoProceso.setText(procesos.get(x).getNombre());
-                txtProcesoPC.setText(procesos.get(x).getNombre());
-                //txtDireccionMemoria.setText(Integer.toHexString(System.identityHashCode(procesos.get(x))));
-                txtDireccionMemoria.setText(Integer.toHexString(procesos.get(x).hashCode()));
                 procesos.get(x).setEstado("En ejecución");
                 int tiempoActual = procesos.get(x).getTiempo();
                 procesos.get(x).setTiempo(tiempoActual - 1);
@@ -390,6 +365,7 @@ public class Proyecto extends javax.swing.JFrame {
                 }
                 x++;
             }
+            
         }
     });
 
@@ -409,7 +385,6 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JPanel CT;
     private javax.swing.JTable ControlTiempo;
     private javax.swing.JTextField DireccionMemoria;
-    private javax.swing.JPanel HS;
     private javax.swing.JTextField Proceso;
     private javax.swing.JButton iniciar;
     private javax.swing.JButton iniciar1;
@@ -421,5 +396,7 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JLabel lblCurrentTime;
     private javax.swing.JList<String> lstCalendarizador;
     private javax.swing.JTextField turnoProceso;
+    private javax.swing.JTextField txtDireccionMemoria;
+    private javax.swing.JTextField txtProcesoPC;
     // End of variables declaration//GEN-END:variables
 }
