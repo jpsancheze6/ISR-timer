@@ -1,6 +1,7 @@
 package proyectoso;
 
 import java.awt.AWTException;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -12,6 +13,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -25,6 +27,19 @@ public class Proyecto extends javax.swing.JFrame {
 
     public Proyecto() {
         initComponents();
+        lblHora.setOpaque(true);
+        lblContadorPrograma.setOpaque(true);
+        lblControl.setOpaque(true);
+        lblCalendarizador.setOpaque(true);
+        lblInterrupcionActiva.setOpaque(true);
+        this.setTitle("<Manejador de procesos e interrupciones>");
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.getContentPane().setBackground(new Color(242, 242, 242));
+        lblNuevo.setIcon(new ImageIcon(getClass().getResource("agregar.png")));
+        lblInterrupcionActiva.setVisible(false);
+        
+
         currentTime.start();
         reduceTimeProcess.start();
         modeloTabla.addColumn("Proceso");
@@ -44,84 +59,68 @@ public class Proyecto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblNuevo = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         txtDireccionMemoria = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtProcesoPC = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         lblCurrentTime = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        iniciar = new javax.swing.JButton();
-        iniciar1 = new javax.swing.JButton();
+        lblHora = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstCalendarizador = new javax.swing.JList<>();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         turnoProceso = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ControlTiempo = new javax.swing.JTable();
+        lblContadorPrograma = new javax.swing.JLabel();
+        lblControl = new javax.swing.JLabel();
+        lblCalendarizador = new javax.swing.JLabel();
+        lblInterrupcion = new javax.swing.JLabel();
+        lblInterrupcionActiva = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 770, 10));
+
+        lblNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoso/agregar.png"))); // NOI18N
+        lblNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblNuevoMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 450, 50, 50));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 770, 10));
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 10, 550));
 
         jLabel1.setText("Dirección de Memoria:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
-        getContentPane().add(txtDireccionMemoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 104, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+        getContentPane().add(txtDireccionMemoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 104, -1));
 
         jLabel2.setText("Proceso:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
-        getContentPane().add(txtProcesoPC, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 104, -1));
-
-        jLabel3.setText("Contador del Programa");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
+        getContentPane().add(txtProcesoPC, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 104, -1));
 
         lblCurrentTime.setFont(new java.awt.Font("Noto Sans", 0, 48)); // NOI18N
-        getContentPane().add(lblCurrentTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 282, 66));
+        getContentPane().add(lblCurrentTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, 282, 66));
 
-        jLabel6.setText("Hora del Sistema");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, -1, -1));
-
-        jLabel8.setText("Calendarizador");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
-
-        iniciar.setText("Nuevo");
-        iniciar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                iniciarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 470, -1, -1));
-
-        iniciar1.setText("Interrupciones");
-        iniciar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                iniciar1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(iniciar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 510, -1, -1));
+        lblHora.setBackground(new java.awt.Color(242, 84, 48));
+        lblHora.setForeground(new java.awt.Color(255, 255, 255));
+        lblHora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHora.setText("Hora del sistema");
+        getContentPane().add(lblHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 390, 30));
 
         lstCalendarizador.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(lstCalendarizador);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 284, -1));
-
-        jLabel9.setText("Procesos:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, -1, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 284, 230));
 
         jLabel10.setText("Turno:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, -1, -1));
-        getContentPane().add(turnoProceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 146, -1));
-
-        jLabel11.setText("Control de Tiempo");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 250, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, -1, -1));
+        getContentPane().add(turnoProceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 146, -1));
 
         ControlTiempo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -134,12 +133,44 @@ public class Proyecto extends javax.swing.JFrame {
         ControlTiempo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(ControlTiempo);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, 370, 246));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 370, 340));
+
+        lblContadorPrograma.setBackground(new java.awt.Color(90, 191, 134));
+        lblContadorPrograma.setForeground(new java.awt.Color(255, 255, 255));
+        lblContadorPrograma.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblContadorPrograma.setText("Contador de programa");
+        getContentPane().add(lblContadorPrograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 30));
+
+        lblControl.setBackground(new java.awt.Color(242, 172, 41));
+        lblControl.setForeground(new java.awt.Color(255, 255, 255));
+        lblControl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblControl.setText("Control de tiempo");
+        getContentPane().add(lblControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 390, 30));
+
+        lblCalendarizador.setBackground(new java.awt.Color(4, 178, 217));
+        lblCalendarizador.setForeground(new java.awt.Color(255, 255, 255));
+        lblCalendarizador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCalendarizador.setText("Calendarizador");
+        getContentPane().add(lblCalendarizador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 380, 30));
+
+        lblInterrupcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoso/interrupcion.png"))); // NOI18N
+        lblInterrupcion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblInterrupcionMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblInterrupcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, 50, 50));
+
+        lblInterrupcionActiva.setBackground(new java.awt.Color(255, 51, 51));
+        lblInterrupcionActiva.setForeground(new java.awt.Color(255, 255, 255));
+        lblInterrupcionActiva.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblInterrupcionActiva.setText("Interrupción activa");
+        getContentPane().add(lblInterrupcionActiva, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 300, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarActionPerformed
+    private void lblNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNuevoMouseClicked
         //Crear el proceso
         this.contadorProcesos++;
         proceso process = new proceso();
@@ -153,25 +184,26 @@ public class Proyecto extends javax.swing.JFrame {
          */
         tablaProcesos(String.valueOf(process.getTiempo()));
         actualizarLista();
-    }//GEN-LAST:event_iniciarActionPerformed
+    }//GEN-LAST:event_lblNuevoMouseClicked
 
-    private void iniciar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciar1ActionPerformed
-
+    private void lblInterrupcionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInterrupcionMouseClicked
         //Generar interrupción
         //reduceTimeProcess
+        lblInterrupcionActiva.setVisible(true);
         try {
+            
             procesos.get(x).setEstado("Bloqueado");
             actualizarLista();
             reduceTimeProcess.stop();
-            
+
             generarInterrupcion();
-            
+
         } catch (InterruptedException ex) {
             Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (AWTException ex) {
             Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_iniciar1ActionPerformed
+    }//GEN-LAST:event_lblInterrupcionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -217,17 +249,18 @@ public class Proyecto extends javax.swing.JFrame {
         }
     });
 
-    public void generarInterrupcion() throws InterruptedException, AWTException{
+    public void generarInterrupcion() throws InterruptedException, AWTException {
         int numeroAleatorio = getRandomNumberInRange(100, 1000);
         String cadena = "Se activó la interrupción por " + numeroAleatorio + " ms.";
-        Thread.sleep(numeroAleatorio*10);
-        
+        Thread.sleep(numeroAleatorio * 10);
+
         reduceTimeProcess.start();
         procesos.get(x).setEstado("Listo");
         actualizarLista();
+        lblInterrupcionActiva.setVisible(false);
         JOptionPane.showMessageDialog(null, cadena);
     }
-    
+
     public void actualizarLista() {
         DefaultListModel modeloLista = new DefaultListModel();
         for (int x = 0; x < procesos.size(); x++) {
@@ -305,7 +338,7 @@ public class Proyecto extends javax.swing.JFrame {
                 }
                 x++;
             }
-            
+
         }
     });
 
@@ -321,21 +354,21 @@ public class Proyecto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable ControlTiempo;
-    private javax.swing.JButton iniciar;
-    private javax.swing.JButton iniciar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel lblCalendarizador;
+    private javax.swing.JLabel lblContadorPrograma;
+    private javax.swing.JLabel lblControl;
     private javax.swing.JLabel lblCurrentTime;
+    private javax.swing.JLabel lblHora;
+    private javax.swing.JLabel lblInterrupcion;
+    private javax.swing.JLabel lblInterrupcionActiva;
+    private javax.swing.JLabel lblNuevo;
     private javax.swing.JList<String> lstCalendarizador;
     private javax.swing.JTextField turnoProceso;
     private javax.swing.JTextField txtDireccionMemoria;
