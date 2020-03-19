@@ -1,5 +1,6 @@
 package proyectoso;
 
+import java.awt.AWTException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -8,20 +9,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Oslo
- */
 public class Proyecto extends javax.swing.JFrame {
 
     public ArrayList<proceso> procesos = new ArrayList<>();
     List<String> procesosLista = new ArrayList<String>();
     public int contadorProcesos = 0;
     public DefaultTableModel modeloTabla = new DefaultTableModel();
+
     public Proyecto() {
         initComponents();
         currentTime.start();
@@ -242,6 +243,23 @@ public class Proyecto extends javax.swing.JFrame {
         actualizarLista();
     }//GEN-LAST:event_iniciarActionPerformed
 
+    private void iniciar1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+
+        //Generar interrupción
+        //reduceTimeProcess
+        try {
+            procesos.get(x).setEstado("Bloqueado");
+            actualizarLista();
+            reduceTimeProcess.stop();
+            
+            generarInterrupcion();
+            
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (AWTException ex) {
+            Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }  
     /**
      * @param args the command line arguments
      */
@@ -286,10 +304,21 @@ public class Proyecto extends javax.swing.JFrame {
         }
     });
 
+    public void generarInterrupcion() throws InterruptedException, AWTException{
+        int numeroAleatorio = getRandomNumberInRange(100, 1000);
+        String cadena = "Se activó la interrupción por " + numeroAleatorio + " ms.";
+        Thread.sleep(numeroAleatorio*10);
+        
+        reduceTimeProcess.start();
+        procesos.get(x).setEstado("Listo");
+        actualizarLista();
+        JOptionPane.showMessageDialog(null, cadena);
+    }
+
     public void actualizarLista() {
         DefaultListModel modeloLista = new DefaultListModel();
         for (int x = 0; x < procesos.size(); x++) {
-            modeloLista.addElement(procesos.get(x).getNombre() + "," + procesos.get(x).getTiempo() + "," + procesos.get(x).getEstado());
+            modeloLista.addElement(procesos.get(x).getNombre() + ",  " + procesos.get(x).getEstado());
         }
         lstCalendarizador.setModel(modeloLista);
     }
@@ -326,7 +355,11 @@ public class Proyecto extends javax.swing.JFrame {
             if (x >= procesos.size()) {
                 x = 0;
             } else {
+                //Colcoar valores
                 turnoProceso.setText(procesos.get(x).getNombre());
+                txtProcesoPC.setText(procesos.get(x).getNombre());
+                //txtDireccionMemoria.setText(Integer.toHexString(System.identityHashCode(procesos.get(x))));
+                txtDireccionMemoria.setText(Integer.toHexString(procesos.get(x).hashCode()));
                 procesos.get(x).setEstado("En ejecución");
                 int tiempoActual = procesos.get(x).getTiempo();
                 procesos.get(x).setTiempo(tiempoActual - 1);
@@ -351,6 +384,8 @@ public class Proyecto extends javax.swing.JFrame {
                         }
                     }
                     turnoProceso.setText("");
+                    txtProcesoPC.setText("");
+                    txtDireccionMemoria.setText("");
                     actualizarLista();
                 }
                 x++;
