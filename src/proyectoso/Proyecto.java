@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -38,7 +41,6 @@ public class Proyecto extends javax.swing.JFrame {
         this.getContentPane().setBackground(new Color(242, 242, 242));
         lblNuevo.setIcon(new ImageIcon(getClass().getResource("agregar.png")));
         lblInterrupcionActiva.setVisible(false);
-        
 
         currentTime.start();
         reduceTimeProcess.start();
@@ -189,20 +191,20 @@ public class Proyecto extends javax.swing.JFrame {
     private void lblInterrupcionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInterrupcionMouseClicked
         //Generar interrupción
         //reduceTimeProcess
-        lblInterrupcionActiva.setVisible(true);
-        try {
-            
-            procesos.get(x).setEstado("Bloqueado");
-            actualizarLista();
-            reduceTimeProcess.stop();
 
-            generarInterrupcion();
-
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (AWTException ex) {
-            Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
+        reduceTimeProcess.stop();
+        for (int m = 0; m < procesos.size(); m++) {
+            if (procesos.get(m).getEstado().equals("En ejecución")) {
+                procesos.get(m).setEstado("Bloqueado");
+            }
         }
+        actualizarLista();
+        lblInterrupcionActiva.setVisible(true);
+
+        int numeroAleatorio = getRandomNumberInRange(100, 1000);
+        esperar(numeroAleatorio);
+
+
     }//GEN-LAST:event_lblInterrupcionMouseClicked
 
     /**
@@ -249,16 +251,36 @@ public class Proyecto extends javax.swing.JFrame {
         }
     });
 
-    public void generarInterrupcion() throws InterruptedException, AWTException {
-        int numeroAleatorio = getRandomNumberInRange(100, 1000);
-        String cadena = "Se activó la interrupción por " + numeroAleatorio + " ms.";
-        Thread.sleep(numeroAleatorio * 10);
+    boolean bandera = false;
 
-        reduceTimeProcess.start();
-        procesos.get(x).setEstado("Listo");
-        actualizarLista();
-        lblInterrupcionActiva.setVisible(false);
-        JOptionPane.showMessageDialog(null, cadena);
+    public void esperar(int numeroAleatorio) {
+
+        Timer a = new Timer(numeroAleatorio * 10, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (bandera) {
+                    bandera = false;
+                } else {
+                    String cadena = "Se activó la interrupción por " + numeroAleatorio + " ms.";
+                    reduceTimeProcess.start();
+                    for (int m = 0; m < procesos.size(); m++) {
+                        if (procesos.get(m).getEstado().equals("Bloqueado")) {
+                            procesos.get(m).setEstado("En ejecucución");
+                        }
+                    }
+                    actualizarLista();
+                    lblInterrupcionActiva.setVisible(false);
+                    JOptionPane.showMessageDialog(null, cadena);
+                    Thread.currentThread().interrupt();
+                }
+            }
+        });
+        a.start();
+//        try {
+//            Thread.sleep(numeroAleatorio * 10);
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     public void actualizarLista() {
