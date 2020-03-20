@@ -202,9 +202,10 @@ public class Proyecto extends javax.swing.JFrame {
         lblInterrupcionActiva.setVisible(true);
 
         int numeroAleatorio = getRandomNumberInRange(100, 1000);
+        bandera = true;
+        contadorInterrupcion = 0;
         esperar(numeroAleatorio);
-
-
+        
     }//GEN-LAST:event_lblInterrupcionMouseClicked
 
     /**
@@ -252,15 +253,14 @@ public class Proyecto extends javax.swing.JFrame {
     });
 
     boolean bandera = false;
+    int contadorInterrupcion = 0;
 
     public void esperar(int numeroAleatorio) {
-
         Timer a = new Timer(numeroAleatorio * 10, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (bandera) {
+                if (bandera && contadorInterrupcion == 1) {
                     bandera = false;
-                } else {
                     String cadena = "Se activó la interrupción por " + numeroAleatorio + " ms.";
                     reduceTimeProcess.start();
                     for (int m = 0; m < procesos.size(); m++) {
@@ -270,17 +270,12 @@ public class Proyecto extends javax.swing.JFrame {
                     }
                     actualizarLista();
                     lblInterrupcionActiva.setVisible(false);
-                    JOptionPane.showMessageDialog(null, cadena);
-                    Thread.currentThread().interrupt();
+                    
                 }
+                contadorInterrupcion++;
             }
         });
         a.start();
-//        try {
-//            Thread.sleep(numeroAleatorio * 10);
-//        } catch (InterruptedException ex) {
-//            Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }
 
     public void actualizarLista() {
